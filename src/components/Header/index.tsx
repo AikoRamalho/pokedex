@@ -5,7 +5,7 @@ export function Header() {
   return (
     <ul className={styles.navigation}>
       <li><Link href="/">Home</Link></li>
-      <li><a href="#">Paginacao</a></li>
+      <li><Link href="/pokemonSSR">Paginacao</Link></li>
     </ul>
   )
 }

@@ -13,7 +13,7 @@ export function PokemonCard({ id, name }: PokemonCardProps) {
     <div className={styles.card}>
       <h1 className={styles.h1}>{name}</h1>
       <Image
-        src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`}
+        src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`} // uso esse link para não ter que fazer fetch de novo aqui dentro
         alt={name}
         width={200}
         height={200}

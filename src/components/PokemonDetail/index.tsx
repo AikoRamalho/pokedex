@@ -2,8 +2,6 @@ import Image from "next/image"
 
 import styles from './styles.module.scss'
 
-// esse design foi inspirado no https://www.pokemon.com/br/pokedex/
-
 export function PokemonDetail({ pokemon }: any) {
   return (
     <div className={styles.pokemon_container}>
