@@ -5,6 +5,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 
+import "../styles/global.scss"
+
 const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
