@@ -9,14 +9,16 @@ interface PokemonCardProps {
 }
 
 export function PokemonCard({ id, name }: PokemonCardProps) {
+  const [imgSrc, setImgSrc] = useState<string>(`https://cdn.traction.one/pokedex/pokemon/${id}.png`)
   return (
     <div className={styles.card}>
       <h1 className={styles.h1}>{name}</h1>
       <Image
-        src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`} // uso esse link para não ter que fazer fetch de novo aqui dentro
+        src={imgSrc} // uso esse link para não ter que fazer fetch de novo aqui dentro
         alt={name}
         width={200}
         height={200}
+        onErrorCapture={() => setImgSrc("https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg")}
       />
       <Link
         href={`loading/pokemon?name=${name}`}

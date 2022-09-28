@@ -7,6 +7,7 @@ const nextConfig = {
       'raw.githubusercontent.com',
       'e1.pngegg.com',
       'cdn.traction.one',
+      'cdn.neemo.com.br'
     ],
   },
 }

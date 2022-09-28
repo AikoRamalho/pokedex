@@ -9,19 +9,27 @@ export function PokemonDetail({ pokemon }: any) {
       <p>id: #{pokemon.id}</p>
       <h2> Sprites </h2>
       <h3> Front Default: </h3> 
-      <Image
-        src={pokemon.sprites.front_default}
-        width="200"
-        height="200"
-        alt={`${pokemon.name}-front_default`}
-      />
+      {
+        pokemon.sprites.front_default && (
+          <Image
+            src={pokemon.sprites.front_default}
+            width="200"
+            height="200"
+            alt={`${pokemon.name}-front_default`}
+          />
+        )
+      }
       <h3> Back Default: </h3>
-      <Image
-        src={pokemon.sprites.back_default}
-        width="200"
-        height="200"
-        alt={`${pokemon.name}-back_default`}
-      />
+      {
+        pokemon.sprites.back_default && (
+          <Image
+            src={pokemon.sprites.back_default}
+            width="200"
+            height="200"
+            alt={`${pokemon.name}-back_default`}
+          />
+        )
+      }
       <div>
         <h3>Tipo:</h3>
         <div className={styles.types_container}>

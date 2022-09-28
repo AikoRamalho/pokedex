@@ -1,15 +1,19 @@
 import { PokemonDetail } from "../../components/PokemonDetail"
 
 export const  getStaticProps = async (context: any) => {
-  const { pokemonName } = context.params
-
-  const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-    .then((response) => response.json())
-
-  return {
-    props: {
-      pokemon
+  try {
+    const { pokemonName } = context.params
+  
+    const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+      .then((response) => response.json())
+  
+    return {
+      props: {
+        pokemon
+      }
     }
+  } catch(e) {
+    return { notFound: true }
   }
 }
 

@@ -1,9 +1,18 @@
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Pagination from '@mui/material/Pagination';
+import { PokemonCard } from "../../components/PokemonCard";
+import styles from "../../styles/pokemonSSR.module.scss";
+import { Search } from "../../components/Search";
 
 function getApiLink(page: number){
   return `https://pokeapi.co/api/v2/pokemon?offset=${(page-1)*10}&limit=10`
+}
+
+interface Pokemon {
+  name: string
+  url: string
 }
 
 export async function getServerSideProps(context: { query: { page: string; }; }) {
@@ -38,12 +47,30 @@ export default function PokemonSSR(_props: any) {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     }
-  );
+  )
 
-  console.log('data', data);
+  
+  function handlePaginationChange(_e: any, value: number) {
+    setPage(value)
+    router.push(`pokemonSSR/?page=${value}`, undefined, { shallow: true })
+  }
+
   return(
     <div>
-      <h1>PokemonSSR</h1>
+      <div className={styles.search}>  
+        <Search />
+      </div>
+      <Pagination
+        className={styles.pagination}
+        count={Math.ceil(data?.count/10)}
+        page={page}
+        onChange={handlePaginationChange}
+      />
+      <div className={styles.grid}>
+      {data?.results?.map((pokemon: Pokemon, index: any) => (
+        <PokemonCard key={pokemon.name} id={page > 1 ? (page-1)*10 + index+1 : index+1} name={pokemon.name} />
+      ))}
+    </div>
     </div>
   )
 }

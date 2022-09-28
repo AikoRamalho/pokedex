@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component"
 import { PokemonCard } from "../PokemonCard"
 
 import styles from "./styles.module.scss"
+import { Search } from '../Search';
 
 // decidi fazer um infinite scroll como o exemplo cedido
 
@@ -36,6 +37,9 @@ export function PokemonGrid() {
 
   return (
     <>
+      <div className={styles.search}>  
+        <Search />
+      </div>
       {status === "success" && (
         <InfiniteScroll
           dataLength={data?.pages.length * 10}
