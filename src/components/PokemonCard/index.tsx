@@ -19,7 +19,7 @@ export function PokemonCard({ id, name }: PokemonCardProps) {
         height={200}
       />
       <Link
-        href={`/pokemon/${name}`}
+        href={`loading/pokemon?name=${name}`}
       >
         <span>
           <a className={styles.textButton}> Saiba Mais </a>
