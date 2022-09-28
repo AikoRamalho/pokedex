@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import styles from "./styles.module.scss"
 
 interface PokemonCardProps {
   name: string
@@ -16,7 +17,7 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
   }, [url])
 
   return (
-    <>
+    <div className={styles.card}>
       <h1>{name}</h1>
       <Image
         src={pokeImage}
@@ -24,6 +25,6 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
         width={200}
         height={200}
       />
-    </>
+    </div>
   )
 }
