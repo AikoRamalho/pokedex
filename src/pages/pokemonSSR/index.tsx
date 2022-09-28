@@ -1,19 +1,23 @@
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+
 import Pagination from '@mui/material/Pagination';
+
+import { Pokemon } from '../../types/Pokemon';
 import { PokemonCard } from "../../components/PokemonCard";
-import styles from "../../styles/pokemonSSR.module.scss";
 import { Search } from "../../components/Search";
+
+import styles from "../../styles/pokemonSSR.module.scss";
 
 function getApiLink(page: number){
   return `https://pokeapi.co/api/v2/pokemon?offset=${(page-1)*10}&limit=10`
 }
 
-interface Pokemon {
-  name: string
-  url: string
+function getPokemonId(page: number, index: number) {
+  return page > 1 ? (page-1) * 10 + index + 1 : index + 1
 }
+
 
 export async function getServerSideProps(context: { query: { page: string; }; }) {
   let page = 1
@@ -28,12 +32,12 @@ export async function getServerSideProps(context: { query: { page: string; }; })
         getApiLink(page)
       ).then((result) => result.json())
   );
-  return { props: { dehydratedState: dehydrate(queryClient) } };
+  return { props: { dehydratedState: dehydrate(queryClient) } }
 }
 
 export default function PokemonSSR(_props: any) {
   const router = useRouter();
-  const [page, setPage] = useState(parseInt(router.query.page! as string) || 1);
+  const [page, setPage] = useState(parseInt(router.query.page! as string) || 1)
 
   
   const { data } = useQuery(
@@ -48,7 +52,6 @@ export default function PokemonSSR(_props: any) {
       refetchOnWindowFocus: false,
     }
   )
-
   
   function handlePaginationChange(_e: any, value: number) {
     setPage(value)
@@ -68,7 +71,7 @@ export default function PokemonSSR(_props: any) {
       />
       <div className={styles.grid}>
       {data?.results?.map((pokemon: Pokemon, index: any) => (
-        <PokemonCard key={pokemon.name} id={page > 1 ? (page-1)*10 + index+1 : index+1} name={pokemon.name} />
+        <PokemonCard key={pokemon.name} id={getPokemonId(page, index)} name={pokemon.name} />
       ))}
     </div>
     </div>

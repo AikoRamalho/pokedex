@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import styles from "./styles.module.scss"
 import Link from "next/link"

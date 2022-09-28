@@ -1,18 +1,12 @@
 import { Fragment } from 'react';
 import { useInfiniteQuery } from "@tanstack/react-query"
 import InfiniteScroll from "react-infinite-scroll-component"
+
+import { Pokemon } from '../../types/Pokemon';
 import { PokemonCard } from "../PokemonCard"
-
-import styles from "./styles.module.scss"
 import { Search } from '../Search';
+import styles from "./styles.module.scss"
 
-// decidi fazer um infinite scroll como o exemplo cedido
-
-
-interface Pokemon {
-  name: string
-  url: string
-}
 
 function getPokemonId(indexPage: number, index: number) {
   return (indexPage * 10) + index + 1

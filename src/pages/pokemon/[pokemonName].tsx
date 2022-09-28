@@ -36,7 +36,6 @@ export const  getStaticPaths = async () => {
 }
 
 export default function Pokemon({ pokemon }: any){
-  console.log('pokemon ', pokemon)
   return (
     <PokemonDetail pokemon={pokemon} />
   )
