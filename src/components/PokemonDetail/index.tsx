@@ -27,7 +27,7 @@ export function PokemonDetail({ pokemon }: any) {
       <div>
         <h3>Tipo:</h3>
         <div className={styles.types_container}>
-          {pokemon.types.map((item: any, index: any) => (
+          {pokemon.types.map((item: any, index: number) => (
             <span
               key={index}
               className={`${styles.type} ${styles['type_' + item.type.name]}`}

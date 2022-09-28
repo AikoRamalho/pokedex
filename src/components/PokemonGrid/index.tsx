@@ -5,6 +5,8 @@ import { PokemonCard } from "../PokemonCard"
 
 import styles from "./styles.module.scss"
 
+// decidi fazer um infinite scroll como o exemplo cedido
+
 
 interface Pokemon {
   name: string
