@@ -11,6 +11,9 @@ interface Pokemon {
   url: string
 }
 
+function getPokemonId(indexPage: number, index: number) {
+  return (indexPage * 10) + index + 1
+}
 
 export function PokemonGrid() {
   const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery(
@@ -42,7 +45,7 @@ export function PokemonGrid() {
             {data?.pages.map((page, indexPage) => (
               <Fragment key={indexPage}>
                 {page.results.map((pokemon: Pokemon, index: number) => (
-                  <PokemonCard key={pokemon.name} id={(indexPage* 10) + index + 1} name={pokemon.name} />
+                  <PokemonCard key={pokemon.name} id={getPokemonId(indexPage, index)} name={pokemon.name} />
                 ))}
               </Fragment>
             ))}
