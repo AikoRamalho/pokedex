@@ -8,7 +8,7 @@ interface PokemonCardProps {
 }
 
 export function PokemonCard({ name, url }: PokemonCardProps) {
-  const [pokeImage, setPokeImage] = useState("")
+  const [pokeImage, setPokeImage] = useState("https://e1.pngegg.com/pngimages/614/418/png-clipart-jsplaylist-loading-icon-thumbnail.png")
 
   useEffect(() => {
     fetch(url)
